@@ -19,7 +19,8 @@ def return_hash_id(hash_string: str):
             'Access-Control-Allow-Origin': 'http://localhost:3000/',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         }
-    output = runner.api_return_hashes_as_json([hash_string])
+    output = json.loads(runner.api_return_hashes_as_json([hash_string]))
+    print(output)
     return JSONResponse(content=output[hash_string], headers=headers)
 
 handler = Mangum(app)
